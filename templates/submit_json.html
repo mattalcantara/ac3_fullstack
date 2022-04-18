@@ -1,0 +1,39 @@
+<html>
+    <body>
+        <form id="name_form">
+            <label>Primeiro Nome:</label><input type="text" name="primeiro_nome"/>
+            <br/>
+            <label>Último Nome:</label><input type="text" name="ultimo_nome"/>
+            <br/>
+            <input type="submit" value="submit" />
+        </form>
+         <input type="text" id="resp" name="resp" />
+        
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script type="text/javascript">
+            $('#name_form').submit(function(e) {
+                    e.preventDefault();
+
+                    var person = {
+                       primeiro: $('[name=primeiro_nome]').val(),
+                       ultimo:$('[name=ultimo_nome]').val()
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/submit_json',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(person),
+                        success: function(callback) {
+                            console.log(callback);
+                            $('#resp').val('app respondeu:' + callback.primeiro_nome);
+                        },
+                        error: function() {
+                            $(this).html("error!");
+                        }
+                    });
+                });
+        </script>
+    </body>
+</html>

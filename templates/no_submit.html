@@ -1,0 +1,42 @@
+<html>
+    <body>
+        <form id="name_form">
+            <label>Primeiro Nome:</label><input type="text" name="primeiro_nome"/>
+            <br/>
+            <label>Último Nome:</label><input type="text" name="ultimo_nome"/>
+            <br/>
+            <input type="button" value="enviar" id="envio" name="envio" />
+        </form>
+        <input type="text" id="resp" name="resp" size="50" /> 
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script type="text/javascript">
+            $('#envio').click(function(e) {
+                    e.preventDefault();
+
+                    if($('[name=primeiro_nome]').val().length == 0){
+                        $('#resp').val('campo primeiro nome deve ser preenchido');
+                        return;
+                    }
+                    if($('[name=ultimo_nome]').val().length == 0){
+                        $('#resp').val('campo último nome deve ser preenchido');
+                        return;
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/no_submit',
+                        data: $('form').serialize(),
+                        success: function(callback) {
+                            console.log(callback);
+                            $('#resp').val('Ola ' + callback.primeiro_nome);
+                            $('[name=primeiro_nome]').val('');
+                        },
+                        error: function() {
+                            $(this).html("error!");
+                        }
+                    });
+                });
+        </script>
+    </body>
+</html>
