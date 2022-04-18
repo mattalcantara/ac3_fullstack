@@ -16,14 +16,14 @@ def submit_json():
     json = request.get_json()
     primeiro_nome = json['primeiro']
     print(primeiro_nome)
-    ultimo_nome = json['ultimo']
-    print(ultimo_nome)
-    return jsonify(primeiro_nome=primeiro_nome, ultimo_nome=ultimo_nome)
+    email_form = json['email']
+    print(email_form)
+    return jsonify(primeiro_nome=primeiro_nome, email_form=email_form)
 
 @app.route('/api/no_submit', methods=['POST'])
 def no_submit():
-    primeiro_nome = request.form['primeiro_nome']
-    ultimo_nome = request.form['ultimo_nome']
+    primeiro_nome = upper(request.form['primeiro_nome'])
+    ultimo_nome = upper(request.form['ultimo_nome'])
     print(primeiro_nome)
     print(ultimo_nome)
     return jsonify(primeiro_nome=primeiro_nome)

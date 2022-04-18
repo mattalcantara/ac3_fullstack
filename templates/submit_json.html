@@ -3,7 +3,7 @@
         <form id="name_form">
             <label>Primeiro Nome:</label><input type="text" name="primeiro_nome"/>
             <br/>
-            <label>Último Nome:</label><input type="text" name="ultimo_nome"/>
+            <label>E-mail</label><input type="text" name="email_form"/>
             <br/>
             <input type="submit" value="submit" />
         </form>
@@ -16,7 +16,7 @@
 
                     var person = {
                        primeiro: $('[name=primeiro_nome]').val(),
-                       ultimo:$('[name=ultimo_nome]').val()
+                       email:$('[name=email]').val()
                     }
 
                     $.ajax({
@@ -27,7 +27,7 @@
                         data: JSON.stringify(person),
                         success: function(callback) {
                             console.log(callback);
-                            $('#resp').val('app respondeu:' + callback.primeiro_nome);
+                            $('#resp').val('app respondeu:' + callback.primeiro_nome +', ' + callback.email_form);
                         },
                         error: function() {
                             $(this).html("error!");
