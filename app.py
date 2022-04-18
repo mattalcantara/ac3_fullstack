@@ -14,7 +14,7 @@ def index2():
 @app.route('/api/submit_json', methods=['POST'])
 def submit_json():
     json = request.get_json()
-    primeiro_nome = json['primeiro']
+    primeiro_nome = json['primeiro'].upper()
     print(primeiro_nome)
     email_form = json['email']
     print(email_form)
@@ -22,11 +22,11 @@ def submit_json():
 
 @app.route('/api/no_submit', methods=['POST'])
 def no_submit():
-    primeiro_nome = upper(request.form['primeiro_nome'])
-    ultimo_nome = upper(request.form['ultimo_nome'])
+    primeiro_nome = request.form['primeiro_nome']
+    email_form = request.form['email_form']
     print(primeiro_nome)
-    print(ultimo_nome)
-    return jsonify(primeiro_nome=primeiro_nome)
+    print(email_form)
+    return jsonify(primeiro_nome=primeiro_nome, email_form=email_form)
 
 
 

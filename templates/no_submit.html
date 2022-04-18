@@ -3,7 +3,7 @@
         <form id="name_form">
             <label>Primeiro Nome:</label><input type="text" name="primeiro_nome"/>
             <br/>
-            <label>Último Nome:</label><input type="text" name="ultimo_nome"/>
+            <label>E-mail:</label><input type="text" name="email_form"/>
             <br/>
             <input type="button" value="enviar" id="envio" name="envio" />
         </form>
@@ -18,7 +18,7 @@
                         $('#resp').val('campo primeiro nome deve ser preenchido');
                         return;
                     }
-                    if($('[name=ultimo_nome]').val().length == 0){
+                    if($('[name=email_form]').val().length == 0){
                         $('#resp').val('campo último nome deve ser preenchido');
                         return;
                     }
@@ -29,7 +29,7 @@
                         data: $('form').serialize(),
                         success: function(callback) {
                             console.log(callback);
-                            $('#resp').val('Ola ' + callback.primeiro_nome);
+                            $('#resp').val('Ola ' + callback.primeiro_nome + ', ' + callback.email_form);
                             $('[name=primeiro_nome]').val('');
                         },
                         error: function() {
