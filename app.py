@@ -15,17 +15,13 @@ def index2():
 def submit_json():
     json = request.get_json()
     primeiro_nome = json['primeiro'].upper()
-    print(primeiro_nome)
     email_form = json['email']
-    print(email_form)
     return jsonify(primeiro_nome=primeiro_nome, email_form=email_form)
 
 @app.route('/api/no_submit', methods=['POST'])
 def no_submit():
     primeiro_nome = request.form['primeiro_nome']
     email_form = request.form['email_form']
-    print(primeiro_nome)
-    print(email_form)
     return jsonify(primeiro_nome=primeiro_nome, email_form=email_form)
 
 
